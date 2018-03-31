@@ -1,0 +1,234 @@
+object Form1: TForm1
+  Left = 609
+  Height = 715
+  Top = 197
+  Width = 972
+  Caption = 'Form1'
+  ClientHeight = 715
+  ClientWidth = 972
+  OnCreate = FormCreate
+  LCLVersion = '1.6.0.4'
+  object PageControl1: TPageControl
+    Left = 0
+    Height = 715
+    Top = 0
+    Width = 972
+    ActivePage = BrowserTab
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 0
+    object BrowserTab: TTabSheet
+      Caption = 'Browser'
+      ClientHeight = 680
+      ClientWidth = 962
+      OnContextPopup = BrowserTabContextPopup
+      object browser: TWebkitBrowser
+        Left = 0
+        Height = 500
+        Top = 180
+        Width = 962
+        Align = alBottom
+        TabOrder = 0
+        OnLoaded = browserLoaded
+      end
+      object btnGo: TButton
+        Left = 616
+        Height = 25
+        Top = 8
+        Width = 75
+        Caption = 'GO'
+        OnClick = btnGoClick
+        TabOrder = 1
+      end
+      object btnGetContent: TButton
+        Left = 712
+        Height = 25
+        Top = 8
+        Width = 96
+        Caption = 'Get Content'
+        OnClick = btnGetContentClick
+        TabOrder = 2
+      end
+      object btnStartScrap: TButton
+        Left = 864
+        Height = 25
+        Top = 8
+        Width = 80
+        Caption = 'Start Scrap'
+        OnClick = btnStartScrapClick
+        TabOrder = 3
+      end
+      object listOfURLProxies: TComboBox
+        Left = 16
+        Height = 33
+        Top = 8
+        Width = 584
+        ItemHeight = 0
+        OnChange = listOfURLProxiesChange
+        TabOrder = 4
+      end
+    end
+    object ProxiesTab: TTabSheet
+      Caption = 'Proxies'
+      ClientHeight = 680
+      ClientWidth = 962
+      object listOfProxies: TMemo
+        Left = 8
+        Height = 488
+        Top = 40
+        Width = 936
+        ScrollBars = ssAutoBoth
+        TabOrder = 0
+      end
+      object btnSave: TButton
+        Left = 8
+        Height = 25
+        Top = 8
+        Width = 75
+        Caption = 'Save'
+        OnClick = btnSaveClick
+        TabOrder = 1
+      end
+      object isAutoSave: TCheckBox
+        Left = 96
+        Height = 25
+        Top = 8
+        Width = 98
+        Caption = 'isAutoSave'
+        Checked = True
+        State = cbChecked
+        TabOrder = 2
+      end
+      object pathAutoSave: TEdit
+        Left = 200
+        Height = 33
+        Top = 0
+        Width = 544
+        TabOrder = 3
+        Text = '/var/tmp/proxies.txt'
+      end
+    end
+    object TabSheet1: TTabSheet
+      Caption = 'Sources'
+      ClientHeight = 680
+      ClientWidth = 962
+      OnContextPopup = TabSheet1ContextPopup
+      object listOfSources: TListBox
+        Left = 16
+        Height = 256
+        Top = 40
+        Width = 504
+        ItemHeight = 0
+        OnClick = listOfSourcesClick
+        ScrollWidth = 502
+        TabOrder = 0
+        TopIndex = -1
+      end
+      object btnAddNewSource: TButton
+        Left = 528
+        Height = 25
+        Top = 24
+        Width = 136
+        Caption = 'Add New Source'
+        OnClick = btnAddNewSourceClick
+        TabOrder = 1
+      end
+      object urlOfSourceFirstPage: TEdit
+        Left = 528
+        Height = 33
+        Top = 96
+        Width = 424
+        TabOrder = 2
+      end
+      object Label1: TLabel
+        Left = 528
+        Height = 21
+        Top = 64
+        Width = 107
+        Caption = 'URL fo first page'
+        ParentColor = False
+      end
+      object Label2: TLabel
+        Left = 16
+        Height = 21
+        Top = 8
+        Width = 91
+        Caption = 'list of sources'
+        ParentColor = False
+      end
+      object Label3: TLabel
+        Left = 528
+        Height = 21
+        Top = 336
+        Width = 139
+        Caption = 'regex Expr for source'
+        ParentColor = False
+      end
+      object Memo1: TMemo
+        Left = 528
+        Height = 120
+        Top = 416
+        Width = 352
+        Lines.Strings = (
+          'regex expression must be like this :'
+          '([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\s+([0-9]+)'
+          'with 2 matches in ()'
+          'first () for IP and second () for port'
+        )
+        OnChange = Memo1Change
+        TabOrder = 3
+      end
+      object listOfRegex: TListBox
+        Left = 16
+        Height = 224
+        Top = 336
+        Width = 504
+        ItemHeight = 0
+        OnClick = listOfRegexClick
+        ScrollWidth = 502
+        TabOrder = 4
+        TopIndex = -1
+      end
+      object Label4: TLabel
+        Left = 16
+        Height = 21
+        Top = 304
+        Width = 359
+        Caption = 'list of regex expressions (linked with sources by Order)'
+        ParentColor = False
+      end
+      object Memo2: TMemo
+        Left = 528
+        Height = 104
+        Top = 136
+        Width = 352
+        Lines.Strings = (
+          'url must be like this :'
+          'http://proxylist.hidemyass.com/[1]#listable'
+          ' in [2] must be a number of page which will'
+          'be replaced with next page'
+        )
+        OnChange = Memo1Change
+        TabOrder = 5
+      end
+      object codeOfRegex: TComboBox
+        Left = 528
+        Height = 33
+        Top = 368
+        Width = 416
+        ItemHeight = 0
+        TabOrder = 6
+      end
+    end
+  end
+  object SaveDialog1: TSaveDialog
+    left = 376
+    top = 200
+  end
+  object Timer1: TTimer
+    Interval = 6000000
+    OnTimer = Timer1Timer
+    left = 349
+    top = 75
+  end
+end
